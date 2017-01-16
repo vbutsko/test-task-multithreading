@@ -1,6 +1,5 @@
 package org.expertsoft.executor.impl;
 
-import org.expertsoft.executor.ExecuteTask;
 import org.expertsoft.executor.Executor;
 import org.junit.Assert;
 import org.junit.Before;
