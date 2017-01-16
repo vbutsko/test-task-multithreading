@@ -17,34 +17,48 @@ import java.util.Scanner;
 @RunWith(MockitoJUnitRunner.class)
 public class LoggerTest {
     private Logger logger;
+    private File file;
     private final String FILENAME = "testFile";
     private final String message1 = "message 1";
     private final String message2 = "message 2";
-    private final String message3 = "message 3";
-    private final String message4 = "message 4";
 
     @Before
     public void setUp(){
-        logger = new Logger(FILENAME);
+        file = new File(FILENAME);
+        file.delete();
+        file = new File(FILENAME);
+        logger = new Logger(file);
     }
 
     @Test
     public void testLogger() throws FileNotFoundException {
-        logger.logMessage(message1);
-        logger.logMessage(message2);
-        logger.logMessage(message3);
-        logger.logMessage(message4);
-        String temp1 = null, temp2 = null, temp3 = null, temp4 = null;
-        Scanner scanner = new Scanner(new File(FILENAME));
+        int num1 = 100, num2 = 100;
+        Runnable thread1 = new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < num1; i++) {
+                    logger.logMessage(message1);
+                }
+            }
+        };
+        Runnable thread2 = new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < num2; i++) {
+                    logger.logMessage(message2);
+                }
+            }
+        };
+        thread1.run();
+        thread2.run();
+
+        Scanner scanner = new Scanner(file);
+        int numLines = 0;
         while(scanner.hasNextLine()){
-            temp1 = temp2;
-            temp2 = temp3;
-            temp3 = temp4;
-            temp4 = scanner.nextLine();
+            scanner.nextLine();
+            numLines++;
         }
-        Assert.assertEquals(temp1, message1);
-        Assert.assertEquals(temp2, message2);
-        Assert.assertEquals(temp3, message3);
-        Assert.assertEquals(temp4, message4);
+
+        Assert.assertEquals(num1 + num2, numLines);
     }
 }
