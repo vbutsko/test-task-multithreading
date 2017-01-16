@@ -1,11 +1,11 @@
-package org.expertsoft.executor;
+package org.expertsoft.executor.impl;
 
 import java.util.Queue;
 
 /**
  * Created by wladek on 1/16/17.
  */
-public class ExecuteTask implements Runnable {
+class ExecuteTask implements Runnable {
 
     private final Queue<String> messages;
     private final String message;
