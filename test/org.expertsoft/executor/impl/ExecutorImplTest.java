@@ -33,19 +33,26 @@ public class ExecutorImplTest {
 
     @Test
     public void testExecute(){
-        executor.execute(task1);
-        executor.execute(task2);
-        executor.execute(task3);
-        Assert.assertEquals(mes1, queue.poll());
-        Assert.assertEquals(mes2, queue.poll());
-        Assert.assertEquals(mes3, queue.poll());
+        int num1 = 100, num2 = 100;
+        Runnable thread1 = new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < num1; i++) {
+                    executor.execute(task1);
+                }
+            }
+        };
+        Runnable thread2 = new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < num2; i++) {
+                    executor.execute(task2);
+                }
+            }
+        };
+        thread1.run();
+        thread2.run();
 
-        executor.execute(task3);
-        executor.execute(task2);
-        executor.execute(task1);
-        Assert.assertEquals(mes3, queue.poll());
-        Assert.assertEquals(mes2, queue.poll());
-        Assert.assertEquals(mes1, queue.poll());
+        Assert.assertEquals(num1 + num2, queue.size());
     }
-
 }
