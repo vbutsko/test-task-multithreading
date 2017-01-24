@@ -4,39 +4,41 @@ import org.expertsoft.executor.Executor;
 import org.expertsoft.executor.impl.ExecutorImpl;
 import org.expertsoft.logger.runnable.LogRunnable;
 import java.io.File;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created by wladek on 1/13/17.
  */
 public class Logger {
-    //private final Executor executor;
-    private final ExecutorService executorService;
+    private final Executor executor;
     private String fileName;
     private File file;
 
-    protected Logger(){
-        super();
-        this.file = null;
-        this.fileName = null;
-        //executor = new ExecutorImpl();
-        executorService = Executors.newSingleThreadExecutor();
-    }
 
     public Logger(String fileName){
-        this();
-        this.fileName = fileName;
+        this(new ExecutorImpl(), fileName);
+    }
+
+    public Logger(Executor executor, String fileName){
+        this(executor, fileName, null);
     }
 
     public Logger(File file){
-        this();
+        this(new ExecutorImpl(), file);
+    }
+
+    public Logger(Executor executor, File file){
+        this(executor, null, file);
+    }
+
+    protected Logger(Executor executor, String fileName, File file){
+        super();
+        this.executor = executor;
+        this.fileName = fileName;
         this.file = file;
     }
 
     public void logMessage(String message){
-        //executor.execute(createLogRunnable(message));
-        executorService.execute(createLogRunnable(message));
+        executor.execute(createLogRunnable(message));
     }
 
     private LogRunnable createLogRunnable(String message){
