@@ -2,7 +2,7 @@
 .DS_Store
 .idea/
 myFile
-myFile.txt
+*.txt
 out/
 testExecutor.iml
 /testFile
