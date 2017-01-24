@@ -29,8 +29,6 @@ public class ExecutorImpl implements Executor {
     public void execute(Runnable task){
         synchronized (queueOfTasks){
             queueOfTasks.add(task);
-        }
-        if(queueOfTasks.size() == 1 && executeThread.getState().compareTo(Thread.State.WAITING) == 0){
             executeThread.myNotify();
         }
     }
