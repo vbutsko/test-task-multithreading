@@ -1,16 +1,16 @@
 package org.expertsoft.executor.thread;
 
-import org.expertsoft.executor.impl.ExecutorImpl;
+import org.expertsoft.executor.TaskAccess;
 
 /**
  * Created by wladek on 1/13/17.
  */
 public class ExecuteThread extends Thread {
 
-    private final ExecutorImpl executor;
+    private final TaskAccess executor;
     private final Object lock;
 
-    public ExecuteThread(ExecutorImpl executor){
+    public ExecuteThread(TaskAccess executor){
         super();
         this.lock = new Object();
         this.executor = executor;
