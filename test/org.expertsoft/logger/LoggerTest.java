@@ -1,5 +1,6 @@
 package org.expertsoft.logger;
 
+import org.expertsoft.executor.impl.SynchronousQueueExecutor;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +28,7 @@ public class LoggerTest {
         file = new File(FILENAME);
         file.delete();
         file = new File(FILENAME);
-        logger = new Logger(file);
+        logger = new Logger(new SynchronousQueueExecutor(),file);
     }
 
     @Test

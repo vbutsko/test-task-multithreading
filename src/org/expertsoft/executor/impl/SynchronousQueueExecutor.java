@@ -10,11 +10,11 @@ import java.util.concurrent.SynchronousQueue;
 /**
  * Created by wladek on 1/24/17.
  */
-public class ExecutorSynchronousQueueImpl implements Executor, TaskAccess {
+public class SynchronousQueueExecutor implements Executor, TaskAccess {
     private final BlockingQueue<Runnable> queueOfTasks;
     private final ExecuteThread executeThread;
 
-    public ExecutorSynchronousQueueImpl(){
+    public SynchronousQueueExecutor(){
         queueOfTasks = new SynchronousQueue<Runnable>();
         executeThread = new ExecuteThread(this);
         executeThread.start();

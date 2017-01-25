@@ -10,12 +10,12 @@ import java.util.Queue;
 /**
  * Created by wladek on 1/13/17.
  */
-public class ExecutorImpl implements Executor, TaskAccess{
+public class DefaultExecutor implements Executor, TaskAccess{
 
     private final Queue<Runnable> queueOfTasks;
     private final ExecuteThread executeThread;
 
-    public ExecutorImpl(){
+    public DefaultExecutor(){
         queueOfTasks = new LinkedList<Runnable>();
         executeThread = new ExecuteThread(this);
         executeThread.start();

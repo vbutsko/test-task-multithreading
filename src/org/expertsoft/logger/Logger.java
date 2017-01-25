@@ -1,7 +1,7 @@
 package org.expertsoft.logger;
 
 import org.expertsoft.executor.Executor;
-import org.expertsoft.executor.impl.ExecutorImpl;
+import org.expertsoft.executor.impl.DefaultExecutor;
 import org.expertsoft.logger.runnable.LogRunnable;
 import java.io.File;
 
@@ -15,7 +15,7 @@ public class Logger {
 
 
     public Logger(String fileName){
-        this(new ExecutorImpl(), fileName);
+        this(new DefaultExecutor(), fileName);
     }
 
     public Logger(Executor executor, String fileName){
@@ -23,7 +23,7 @@ public class Logger {
     }
 
     public Logger(File file){
-        this(new ExecutorImpl(), file);
+        this(new DefaultExecutor(), file);
     }
 
     public Logger(Executor executor, File file){

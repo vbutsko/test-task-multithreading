@@ -1,5 +1,6 @@
 package org.expertsoft;
 
+import org.expertsoft.executor.impl.SynchronousQueueExecutor;
 import org.expertsoft.logger.Logger;
 
 /**
@@ -9,7 +10,7 @@ public class Main {
 
 
     public static void main(String args[]){
-        Logger logger = new Logger("myFile.txt");
+        Logger logger = new Logger(new SynchronousQueueExecutor(),"myFile.txt");
         logger.logMessage("Task 1");
         try {
             Thread.sleep(2000);

@@ -14,7 +14,7 @@ import java.util.Queue;
  * Created by wladek on 1/16/17.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class ExecutorImplTest {
+public class DefaultExecutorTest {
     private Executor executor;
     private ExecuteTask task1, task2, task3;
     private Queue<String> queue;
@@ -24,7 +24,7 @@ public class ExecutorImplTest {
         mes1 = "mes1";
         mes2 = "mes2";
         mes3 = "mes3";
-        executor = new ExecutorImpl();
+        executor = new DefaultExecutor();
         queue = new LinkedList<>();
         task1 = new ExecuteTask(queue, mes1);
         task2 = new ExecuteTask(queue, mes2);

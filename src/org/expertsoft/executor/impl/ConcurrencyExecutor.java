@@ -8,10 +8,10 @@ import java.util.concurrent.Executors;
 /**
  * Created by wladek on 1/24/17.
  */
-public class ExecutorConcurrencyImpl implements Executor {
+public class ConcurrencyExecutor implements Executor {
     private final ExecutorService executorService;
 
-    public ExecutorConcurrencyImpl(){
+    public ConcurrencyExecutor(){
         executorService = Executors.newSingleThreadScheduledExecutor();
     }
 
