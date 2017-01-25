@@ -1,6 +1,7 @@
 package org.expertsoft.executor.impl;
 
 import org.expertsoft.executor.Executor;
+import org.expertsoft.executor.TaskAccess;
 import org.expertsoft.executor.thread.ExecuteThread;
 
 import java.util.LinkedList;
@@ -9,7 +10,7 @@ import java.util.Queue;
 /**
  * Created by wladek on 1/13/17.
  */
-public class ExecutorImpl implements Executor {
+public class ExecutorImpl implements Executor, TaskAccess{
 
     private final Queue<Runnable> queueOfTasks;
     private final ExecuteThread executeThread;
